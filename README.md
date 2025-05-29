@@ -42,6 +42,10 @@ Antes de começar, certifique-se de ter o seguinte instalado e configurado:
 
 ## 📁 Estrutura do Projeto
 
+O projeto está organizado da seguinte forma:
+
+```text
+.
 ├── .gitignore
 ├── .terraform.lock.hcl
 ├── main.tf
@@ -49,6 +53,10 @@ Antes de começar, certifique-se de ter o seguinte instalado e configurado:
 ├── terraform.tfvars
 ├── terraform.tfvars.example
 └── variables.tf
+```
+
+
+    Detalhes dos arquivos:
 
 * **`.gitignore`**: Define arquivos e diretórios a serem ignorados pelo Git (ex: credenciais, arquivos de estado do Terraform).
 * **`.terraform.lock.hcl`**: Mantém as versões dos provedores fixas para garantir reprodutibilidade.
@@ -57,6 +65,7 @@ Antes de começar, certifique-se de ter o seguinte instalado e configurado:
 * **`terraform.tfvars`**: **(Seu arquivo de configuração local)** Onde você personaliza as variáveis do projeto (AMI ID, VPC ID, etc.). **Este arquivo NÃO deve ser versionado no Git por conter informações sensíveis.**
 * **`terraform.tfvars.example`**: Um modelo para `terraform.tfvars`.
 * **`variables.tf`**: Declaração das variáveis usadas no projeto.
+
 
 ## ⚙️ Configuração
 
@@ -80,8 +89,9 @@ Antes de começar, certifique-se de ter o seguinte instalado e configurado:
     * **AMI ID:** Encontre o ID da AMI mais recente e adequada para a sua região e sistema operacional (ex: Ubuntu Server 22.04 LTS) no console AWS EC2 (ao tentar "Launch instance").
     * **VPC ID:** Encontre o ID da sua VPC padrão ou de uma VPC existente no console AWS VPC (em "Your VPCs").
     * **`public_key_path`**: Certifique-se de usar o caminho absoluto para o seu arquivo `.pub`.
-
-## 🚀 Como Usar
+    
+    
+    ## 🚀 Como Usar
 
 1.  **Navegue até o diretório do projeto:**
     ```bash
@@ -113,19 +123,20 @@ Antes de começar, certifique-se de ter o seguinte instalado e configurado:
     ```
     (Substitua `ubuntu` pelo usuário padrão da sua AMI, ex: `ec2-user` para Amazon Linux).
     Se o `user_data` foi executado, você poderá acessar o IP público da instância em um navegador web para ver a página "Olá do Terraform!".
-
-## 🧹 Limpeza (Destruição dos Recursos)
+    
+    ## 🧹 Limpeza (Destruição dos Recursos)
 
 Para remover todos os recursos provisionados por este projeto e evitar cobranças desnecessárias na AWS, execute:
 
 ```bash
 terraform destroy
+```
 
-⚠️ Segurança
+## ⚠️ Segurança
 
-* Security Group: As regras de ingress (entrada) neste projeto (0.0.0.0/0 para SSH e HTTP) são muito permissivas e NÃO SÃO RECOMENDADAS para ambientes de produção. Para maior segurança, limite o acesso aos seus IPs de origem ou IPs específicos da sua rede.
+* **Security Group:** As regras de `ingress` (entrada) neste projeto (`0.0.0.0/0` para SSH e HTTP) são muito permissivas e **NÃO SÃO RECOMENDADAS para ambientes de produção**. Para maior segurança, limite o acesso aos seus IPs de origem ou IPs específicos da sua rede.
+* **Credenciais AWS:** Mantenha suas credenciais AWS seguras e nunca as exponha em arquivos de código ou repositórios públicos.
 
-* Credenciais AWS: Mantenha suas credenciais AWS seguras e nunca as exponha em arquivos de código ou repositórios públicos.
+## 🤝 Contribuição
 
-🤝 Contribuição
 Sinta-se à vontade para abrir issues ou pull requests se tiver sugestões de melhoria!
